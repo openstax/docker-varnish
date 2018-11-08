@@ -10,7 +10,7 @@ if [ "${1:0:1}" == '-' ]; then
     # `-a :80` -- listen on any address at port 80
     # `-f /etc/varnish/default.vcl` -- use the default varnish configuration
     # `-S /etc/varnish/secret` -- varnish secret
-	set -- varnishd -j unix,user=vcache -F -a :80 -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,${VARNISH_MALLOC:-256m} $@
+	set -- varnishd -j unix,user=vcache -F -a :${VARNISH_PORT:-80} -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,${VARNISH_MALLOC:-256m} $@
 fi
 
 # TODO: Assign the varnish secret at runtime
@@ -22,7 +22,7 @@ if [ "$1" = 'varnishd' ]; then
     printf '=%.0s' {1..80}
     echo 
 
-    # TODO: use confd to write the conf    
+    # TODO: use confd to write the conf
 
 	echo
     printf '=%.0s' {1..80}
