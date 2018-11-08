@@ -4,7 +4,10 @@ This provides a Docker Container for the Varnish Cache server. It can be configu
 
 ## Usage
 
-TODO
+Example:
+```sh
+docker run openstax/varnish:latest -T 127.0.0.1:6082
+```
 
 ## Copyright
 
