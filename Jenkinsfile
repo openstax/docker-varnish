@@ -13,7 +13,12 @@ pipeline {
       }
     }
     stage('Publish Latest Release') {
-      when { branch 'master' }
+      when {
+        anyOf {
+          branch 'master'
+          buildingTag()
+        }
+      }
       steps {
         withDockerRegistry([credentialsId: 'docker-registry', url: '']) {
           sh "docker tag openstax/varnish:dev openstax/varnish:latest"
