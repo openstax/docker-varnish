@@ -16,15 +16,7 @@ fi
 # TODO: Assign the varnish secret at runtime
 
 if [ "$1" = 'varnishd' ]; then
-
-	echo
-	echo "Configuring varnishd VCL from environment variables."
-    printf '=%.0s' {1..80}
-    echo 
-
-    # TODO: use confd to write the conf
-
-	echo
+    confd -onetime -backend env
     printf '=%.0s' {1..80}
     echo
 	echo 'varnish configuration complete; ready for start up.'
