@@ -6,7 +6,7 @@ This provides a Docker Container for the Varnish Cache server. It can be configu
 
 Example:
 ```sh
-docker run openstax/varnish:latest -T 127.0.0.1:6082
+docker run -e VARNISH_DAEMON_OPTS="-T 127.0.0.1:6082" openstax/varnish:latest 
 ```
 
 ## Extending
