@@ -27,5 +27,11 @@ RUN set -x \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY docker-entrypoint.sh /usr/local/bin/
+COPY docker-healthcheck.sh /usr/local/bin/
+
+ENV VARNISH_DAEMON_OPTS=""
+ENV VARNISH_LOG_OPTS=""
+
+HEALTHCHECK --interval=30s --timeout=3s --retries=1 CMD ["docker-healthcheck.sh"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
